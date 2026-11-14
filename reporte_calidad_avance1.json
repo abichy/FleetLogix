@@ -1,0 +1,16 @@
+{
+    "proyecto": "FleetLogix",
+    "avance": 1,
+    "fecha_validacion": "2026-11-13T00:23:15.439800",
+    "total_registros": 505650,
+    "integridad_referencial": "Correcta",
+    "viajes_analizados": 100000,
+    "fechas_incorrectas": 0,
+    "llegadas_pendientes": 0,
+    "viajes_sobrecargados": 0,
+    "viajes_sin_datos_capacidad": 0,
+    "entregas_analizadas": 400000,
+    "seguimientos_vacios": 0,
+    "seguimientos_duplicados": 0,
+    "resultado_general": "Validaciones aprobadas"
+}
