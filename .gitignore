@@ -40,3 +40,5 @@ customers_export.csv
 # Configuraciones locales
 .vscode/
 .idea/
+
+A3-05_etl_pipeline_estudiantes.py
