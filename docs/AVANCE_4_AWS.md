@@ -13,7 +13,7 @@ No se afirma que los servicios AWS estén implementados.
 
 ```mermaid
 flowchart TD
-    A[Aplicaciones y sistemas logísticos] --> B[Amazon API Gateway]
+    A[Sistemas logísticos] --> B[Amazon API Gateway]
     B --> C[AWS Lambda]
     C --> D[(Amazon RDS PostgreSQL)]
     C --> E[(Amazon DynamoDB)]
@@ -21,10 +21,9 @@ flowchart TD
     D --> G[Pipeline ETL Python]
     F --> G
     G --> H[(Snowflake Data Warehouse)]
-    H --> I[Consultas SQL y análisis]
+    H --> I[Análisis SQL]
     C --> J[Amazon CloudWatch]
     G --> J
-
 ```
 
 ### 3. Servicios AWS
