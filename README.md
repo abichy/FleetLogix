@@ -1,7 +1,18 @@
-# FleetLogix M2
+# Proyecto M2 | Abigail Álvarez — FleetLogix
 ## Proyecto de Data Engineering — Henry
 
 Sistema de ingeniería de datos para analizar operaciones logísticas mediante PostgreSQL, Python, Snowflake y una arquitectura cloud propuesta en AWS.
+
+
+## Organización del repositorio
+
+| Carpeta | Contenido |
+|---|---|
+| [notebooks](notebooks/) | Desarrollo de los avances en Jupyter |
+| [scripts](scripts/) | Guía del pipeline y scripts Python |
+| [sql](sql/) | Consultas y optimización SQL |
+| [docs](docs/) | Modelo estrella y arquitectura AWS |
+| [evidencias](evidencias/) | Capturas y resultados de validación |
 
 ## Tecnologías
 
