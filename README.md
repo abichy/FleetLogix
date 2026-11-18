@@ -1,81 +1,99 @@
-# 🚚 FleetLogix — Análisis y Optimización de Operaciones Logísticas
+# FleetLogix M2
+## Proyecto de Data Engineering — Henry
 
-## 📌 Descripción del proyecto
+Sistema de ingeniería de datos para analizar operaciones logísticas mediante PostgreSQL, Python, Snowflake y una arquitectura cloud propuesta en AWS.
 
-FleetLogix es un proyecto integrador de Data Science desarrollado en el marco del Módulo 2 de Henry.
+## Tecnologías
 
-Su objetivo es analizar datos de operaciones logísticas para identificar oportunidades de mejora en la gestión de flotas, conductores, rutas, viajes, entregas y mantenimiento.
+- Python: generación, extracción y transformación de datos.
+- PostgreSQL: base de datos operacional.
+- Snowflake: Data Warehouse analítico.
+- SQL: consultas, optimización y modelo dimensional.
+- AWS: diseño de arquitectura cloud.
+- GitHub: documentación y control de versiones.
 
-## 🎯 Objetivos
+## Datos del proyecto
 
-- Analizar el rendimiento de las operaciones logísticas.
-- Evaluar la productividad de los conductores.
-- Identificar retrasos y problemas operativos.
-- Optimizar consultas SQL mediante índices.
-- Generar información útil para la toma de decisiones.
-
-## 🛠️ Tecnologías utilizadas
-
-- Python
-- PostgreSQL 17
-- SQL
-- DBeaver
-- Jupyter Notebook
-- Git y GitHub
-
-## 🗄️ Base de datos
-
-La base de datos `fleetlogix` contiene seis tablas:
-
-| Tabla | Registros |
+| Tabla operacional | Registros |
 |---|---:|
-| vehicles | 200 |
-| drivers | 400 |
-| routes | 50 |
-| trips | 100.000 |
 | deliveries | 400.000 |
+| trips | 100.000 |
 | maintenance | 5.000 |
+| drivers | 400 |
+| vehicles | 200 |
+| routes | 50 |
 | **Total** | **505.650** |
 
-## 📊 Avance 1 — Generación y validación de datos
+## Avance 1 — Base de datos operacional
 
-- Generación de datos para las seis tablas.
-- Carga de registros en PostgreSQL.
-- Validación de cantidades y relaciones.
-- Creación del diagrama entidad-relación.
-- Elaboración de un reporte de calidad de datos.
+Diseño de seis tablas relacionales en PostgreSQL, generación de datos sintéticos y carga de información logística.
 
-## ⚡ Avance 2 — Análisis y optimización SQL
+## Avance 2 — Consultas y optimización
 
-- Ejecución de ocho consultas SQL para analizar operaciones logísticas.
-- Análisis de flota, conductores, rutas y entregas.
-- Evaluación del rendimiento mediante `EXPLAIN ANALYZE`.
-- Creación de un índice para optimizar búsquedas de entregas.
-- Comparación del tiempo de ejecución antes y después de la optimización.
+Desarrollo de consultas SQL para analizar operaciones logísticas y evaluación del rendimiento mediante EXPLAIN.
 
-**Resultado de la optimización:**
+## Avance 3 — Data Warehouse y ETL
 
-| Medición | Tiempo |
-|---|---:|
-| Antes del índice | 253,653 ms |
-| Después del índice | 36,815 ms |
-| Mejora aproximada | 85,5 % |
+Implementación de un modelo estrella en Snowflake:
 
-## 📁 Archivos del repositorio
+- FACT_DELIVERIES: 400.000 entregas.
+- DIM_CUSTOMER: 400.000 clientes.
+- DIM_DATE: 365 fechas.
+- DIM_DRIVER: 400 conductores.
+- DIM_ROUTE: 50 rutas.
+- DIM_TIME: 1.440 minutos.
+- DIM_VEHICLE: 200 vehículos.
 
-- `Avance_1_DataGeneration_GitHub.ipynb`
-- `Avance_1_FleetLogix_Respaldo_GitHub.ipynb`
-- `FleetLogix_Diagrama_ER_Avance1.png`
-- `reporte_calidad_avance1.json`
-- `Avance_2_Analisis_Optimizacion_SQL.ipynb`
-- `Avance_2_Analisis_SQL.sql`
+Pipeline ETL:
 
-## 🚀 Estado del proyecto
+1. Extracción desde PostgreSQL.
+2. Actualización incremental de staging.
+3. MERGE de la tabla de hechos.
+4. Controles automáticos de calidad.
 
-- [x] Avance 1 — Generación y validación de datos
-- [x] Avance 2 — Análisis y optimización SQL
-- [ ] Próximos avances — En desarrollo
+**Resultado de la prueba:** 400.000 entregas procesadas, 10 controles aprobados y ejecución completa en 34,92 segundos.
 
----
+[Documentación del Avance 3](docs/AVANCE_3.md)
 
-**Proyecto académico — Henry | Data Science**
+[Diagrama del modelo estrella](docs/MODELO_ESTRELLA.md)
+
+## Avance 4 — Arquitectura AWS
+
+Diseño propuesto con:
+
+- Amazon API Gateway.
+- AWS Lambda.
+- Amazon RDS PostgreSQL.
+- Amazon DynamoDB.
+- Amazon S3.
+- Amazon CloudWatch.
+- Snowflake como plataforma analítica.
+
+Esta arquitectura está documentada, pero no desplegada en AWS.
+
+[Documentación y arquitectura AWS](docs/AVANCE_4_AWS.md)
+
+## Ejecución del pipeline
+
+Desde la raíz del proyecto:
+
+```bash
+python etl_pipeline.py --execute
+```
+
+Requiere PostgreSQL y Snowflake configurados, las dimensiones cargadas y las variables de entorno correspondientes.
+
+La autenticación de Snowflake utiliza OAuth. No deben publicarse credenciales ni archivos de configuración sensibles.
+
+## Limitaciones
+
+- La carga incremental de hechos requiere dimensiones actualizadas.
+- Las métricas de viaje no son directamente aditivas por entrega.
+- No existe una transacción distribuida única entre PostgreSQL y Snowflake.
+- La arquitectura AWS es una propuesta técnica.
+
+## Estado
+
+Pipeline PostgreSQL → Snowflake implementado y probado con los datos actuales.
+
+Proyecto académico FleetLogix M2.

@@ -1,9 +1,42 @@
+# Credenciales y configuración privada
 .env
 .env.*
 !.env.example
-*.dump
-*.backup
-.ipynb_checkpoints/
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
+venv/
+.pytest_cache/
+
+# Datos generados
+deliveries_export.csv
+*.csv.gz
+*.parquet
+*.sqlite
+*.db
+
+# Registros
+logs/
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+.DS_Store
+
+# Exportaciones locales
+customers_export.csv
+*_export.csv
+
+# Archivos automáticos de Jupyter
+.ipynb_checkpoints/
+
+# Configuraciones locales
+.vscode/
+.idea/
