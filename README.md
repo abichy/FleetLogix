@@ -78,3 +78,11 @@ Desde la raíz del repositorio:
 
 ```bash
 python etl_pipeline.py --execute
+
+```
+
+Requiere PostgreSQL y Snowflake configurados, con sus credenciales y dimensiones correspondientes.
+
+## Estado del proyecto
+
+Avances 1, 2 y 3 desarrollados. Avance 4 documentado como propuesta de arquitectura AWS, sin despliegue.
