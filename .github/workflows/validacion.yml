@@ -1,0 +1,38 @@
+name: Validacion FleetLogix
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validar-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar sintaxis Python
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+
+          archivos = list(Path("2. Scripts").rglob("*.py"))
+
+          if not archivos:
+              raise SystemExit("No se encontraron scripts Python")
+
+          for archivo in archivos:
+              ast.parse(archivo.read_text(encoding="utf-8"))
+              print(f"OK: {archivo}")
+
+          print(f"Validacion completada: {len(archivos)} scripts")
+          PY
