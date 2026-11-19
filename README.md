@@ -1,110 +1,80 @@
-# Proyecto M2 ABIGAIL ÁLVAREZ
-## Data Science — Henry | FleetLogix
+# 🚚 FleetLogix | Proyecto M2 — Data Science
 
-Sistema de ingeniería de datos para analizar operaciones logísticas mediante PostgreSQL, Python, Snowflake y una arquitectura cloud propuesta en AWS.
+**Autora:** Abigail Álvarez  
+**Institución:** Henry  
+**Proyecto:** Ingeniería de datos aplicada a operaciones logísticas
 
+## 📌 Descripción
 
-## Organización del repositorio
+FleetLogix es un proyecto de ingeniería de datos orientado al análisis de operaciones logísticas, utilizando PostgreSQL, Python, SQL y Snowflake, junto con una propuesta de arquitectura cloud en AWS.
+
+## 📂 Organización del repositorio
 
 | Carpeta | Contenido |
 |---|---|
-| [notebooks](notebooks/) | Desarrollo de los avances en Jupyter |
-| [scripts](scripts/) | Guía del pipeline y scripts Python |
-| [sql](sql/) | Consultas y optimización SQL |
-| [docs](docs/) | Modelo estrella y arquitectura AWS |
-| [evidencias](evidencias/) | Capturas y resultados de validación |
+| [1. Notebooks](1.%20Notebooks/) | Notebooks correspondientes a los cuatro avances |
+| [2. Scripts](2.%20Scripts/) | Scripts Python del proceso ETL y consultas SQL |
+| [3. Documentación](3.%20Documentaci%C3%B3n/) | Documentación técnica, diagramas y evidencias |
 
-## Tecnologías
+## 📚 Avances del proyecto
 
-- Python: generación, extracción y transformación de datos.
-- PostgreSQL: base de datos operacional.
-- Snowflake: Data Warehouse analítico.
-- SQL: consultas, optimización y modelo dimensional.
-- AWS: diseño de arquitectura cloud.
-- GitHub: documentación y control de versiones.
+### Avance 1 — PostgreSQL y generación de datos
 
-## Datos del proyecto
+Diseño de seis tablas relacionales y generación de datos sintéticos para operaciones logísticas.
 
-| Tabla operacional | Registros |
-|---|---:|
-| deliveries | 400.000 |
-| trips | 100.000 |
-| maintenance | 5.000 |
-| drivers | 400 |
-| vehicles | 200 |
-| routes | 50 |
-| **Total** | **505.650** |
+**505.650 registros operacionales** distribuidos entre entregas, viajes, mantenimiento, conductores, vehículos y rutas.
 
-## Avance 1 — Base de datos operacional
+[📓 Ver notebook del Avance 1](1.%20Notebooks/Avance_1_DataGeneration.ipynb)
 
-Diseño de seis tablas relacionales en PostgreSQL, generación de datos sintéticos y carga de información logística.
+### Avance 2 — Análisis y optimización SQL
 
-## Avance 2 — Consultas y optimización
+Consultas SQL para analizar operaciones logísticas y evaluación de rendimiento mediante EXPLAIN.
 
-Desarrollo de consultas SQL para analizar operaciones logísticas y evaluación del rendimiento mediante EXPLAIN.
+[📓 Ver notebook del Avance 2](1.%20Notebooks/Avance_2_Analisis_Optimizacion_SQL.ipynb)
 
-## Avance 3 — Data Warehouse y ETL
+[💻 Ver consultas SQL](2.%20Scripts/Avance_2_Analisis_SQL.sql)
 
-Implementación de un modelo estrella en Snowflake:
+### Avance 3 — Data Warehouse y ETL
 
-- FACT_DELIVERIES: 400.000 entregas.
-- DIM_CUSTOMER: 400.000 clientes.
-- DIM_DATE: 365 fechas.
-- DIM_DRIVER: 400 conductores.
-- DIM_ROUTE: 50 rutas.
-- DIM_TIME: 1.440 minutos.
-- DIM_VEHICLE: 200 vehículos.
+Implementación de un modelo estrella en Snowflake, con una tabla de hechos de 400.000 entregas y seis dimensiones.
 
-Pipeline ETL:
+Pipeline de extracción, transformación, carga incremental y controles de calidad.
 
-1. Extracción desde PostgreSQL.
-2. Actualización incremental de staging.
-3. MERGE de la tabla de hechos.
-4. Controles automáticos de calidad.
+[📓 Ver notebook del Avance 3](1.%20Notebooks/Avance_3_ETL_Fleetlogix.ipynb)
 
-**Resultado de la prueba:** 400.000 entregas procesadas, 10 controles aprobados y ejecución completa en 34,92 segundos.
+[📄 Ver documentación ETL](3.%20Documentaci%C3%B3n/AVANCE_3.md)
 
-[Documentación del Avance 3](docs/AVANCE_3.md)
+[📊 Ver modelo estrella](3.%20Documentaci%C3%B3n/MODELO_ESTRELLA.md)
 
-[Diagrama del modelo estrella](docs/MODELO_ESTRELLA.md)
+### Avance 4 — Arquitectura Cloud AWS
 
-## Avance 4 — Arquitectura AWS
+Propuesta de arquitectura utilizando API Gateway, Lambda, RDS PostgreSQL, DynamoDB, S3, CloudWatch y Snowflake.
 
-Diseño propuesto con:
+**Estado:** arquitectura diseñada y documentada, no desplegada en AWS.
 
-- Amazon API Gateway.
-- AWS Lambda.
-- Amazon RDS PostgreSQL.
-- Amazon DynamoDB.
-- Amazon S3.
-- Amazon CloudWatch.
-- Snowflake como plataforma analítica.
+[📓 Ver notebook del Avance 4](1.%20Notebooks/Avance_4_CloudArchitecture.ipynb)
 
-Esta arquitectura está documentada, pero no desplegada en AWS.
+[📄 Ver documentación AWS](3.%20Documentaci%C3%B3n/AVANCE_4_AWS.md)
 
-[Documentación y arquitectura AWS](docs/AVANCE_4_AWS.md)
+[📑 Ver análisis de arquitectura en PDF](3.%20Documentaci%C3%B3n/AWS_Analisis_Arquitectura.pdf)
 
-## Ejecución del pipeline
+## 🛠️ Tecnologías
 
-Desde la raíz del proyecto:
+- Python
+- PostgreSQL
+- SQL
+- Snowflake
+- Jupyter Notebook
+- AWS (arquitectura propuesta)
+- Git y GitHub
+
+## 🖼️ Evidencias
+
+Las capturas de los avances 1, 2 y 3, junto con los diagramas de base de datos y modelo estrella, se encuentran en [3. Documentación](3.%20Documentaci%C3%B3n/).
+
+## ▶️ Ejecución del pipeline
+
+Desde la raíz del repositorio:
 
 ```bash
 python etl_pipeline.py --execute
-```
-
-Requiere PostgreSQL y Snowflake configurados, las dimensiones cargadas y las variables de entorno correspondientes.
-
-La autenticación de Snowflake utiliza OAuth. No deben publicarse credenciales ni archivos de configuración sensibles.
-
-## Limitaciones
-
-- La carga incremental de hechos requiere dimensiones actualizadas.
-- Las métricas de viaje no son directamente aditivas por entrega.
-- No existe una transacción distribuida única entre PostgreSQL y Snowflake.
-- La arquitectura AWS es una propuesta técnica.
-
-## Estado
-
-Pipeline PostgreSQL → Snowflake implementado y probado con los datos actuales.
-
-Proyecto académico FleetLogix M2.
